@@ -1,5 +1,7 @@
 import wikipedia
 
+
+# search function
 def searcher(request):
     request_wiki = wikipedia.page(request)
     global search_url
@@ -13,17 +15,26 @@ def searcher(request):
     print("content: "+ search_content)
     return 
 
+# calculate article length function
 def length_article(search_url, search_title, search_content):
     print("length of url: "+ str(len(search_url)))
     print("length of title: "+ str(len(search_title)))
     print("length of the content: "+ str(len(search_content)))
     return
-    
-def article_saver():
-    return
 
+# a function to save the article as txt
+def article_saver():
+    file_object  = open(search_title + ".txt", "w+" , encoding="utf-8") 
+    file_object.write(search_content)
+
+
+requests = ["Calculus", "Deep Learning", "Programmer", "Computer programming"]
+
+def main():
+    for request in requests:
+        searcher(request)
+        length_article(search_url, search_title, search_content)
+        article_saver()
 
 if __name__ == "__main__":
-    request = "elon"
-    searcher(request)
-    length_article(search_url, search_title, search_content)
+    main()
